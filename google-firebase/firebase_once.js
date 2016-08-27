@@ -389,5 +389,5 @@ module.exports = function(RED) {
         });
 
     }
-    RED.nodes.registerType('firebase.once', FirebaseOnce);
+    RED.nodes.registerType('google.firebase.once', FirebaseOnce);
 };
