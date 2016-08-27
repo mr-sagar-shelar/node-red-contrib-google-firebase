@@ -3,6 +3,7 @@ module.exports = function(RED) {
         RED.nodes.createNode(this,config);
         var node = this;
         this.on('input', function(msg) {
+            this.log('Console Log statment');
             msg.payload = msg.payload.toLowerCase();
             node.send(msg);
         });
