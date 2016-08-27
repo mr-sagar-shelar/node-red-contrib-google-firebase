@@ -16,9 +16,9 @@
   ],
   "node-red": {
     "nodes": {
-      "lower-case": "google-firebase/lower-case.js",
-      "firebase_once": "google-firebase/firebase_once.js",
-      "firebase_config": "google-firebase/firebase_config.js"
+      "google_lower_case": "google-firebase/lower-case.js",
+      "google_firebase_once": "google-firebase/firebase_once.js",
+      "google_firebase_config": "google-firebase/firebase_config.js"
     }
   },
   "author": "Sagar Shelar",
