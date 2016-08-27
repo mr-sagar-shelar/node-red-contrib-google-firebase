@@ -1,0 +1,28 @@
+{
+  "name": "node-red-contrib-google-firebase",
+  "version": "0.0.1",
+  "description": "Node-Red module for interacting with google firebase",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shaggyshelar/node-red-contrib-google-firebase.git"
+  },
+  "keywords": [
+    "node-red",
+    "firebase"
+  ],
+  "node-red": {
+    "nodes": {
+      "firebase2016": "firebase/sample.js"
+    }
+  },
+  "author": "Sagar Shelar",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shaggyshelar/node-red-contrib-google-firebase/issues"
+  },
+  "homepage": "https://github.com/shaggyshelar/node-red-contrib-google-firebase#readme"
+}
