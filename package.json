@@ -16,7 +16,7 @@
   ],
   "node-red": {
     "nodes": {
-      "firebase2016": "firebase/sample.js"
+      "google-firebase": "google-firebase/lower-case.js"
     }
   },
   "author": "Sagar Shelar",
@@ -24,5 +24,8 @@
   "bugs": {
     "url": "https://github.com/shaggyshelar/node-red-contrib-google-firebase/issues"
   },
-  "homepage": "https://github.com/shaggyshelar/node-red-contrib-google-firebase#readme"
+  "homepage": "https://github.com/shaggyshelar/node-red-contrib-google-firebase#readme",
+  "dependencies": {
+    "firebase": "^3.3.0"
+  }
 }
