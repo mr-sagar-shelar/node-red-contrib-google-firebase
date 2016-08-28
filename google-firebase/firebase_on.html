@@ -1,4 +1,4 @@
-<script type="text/x-red" data-template-name="google.firebase.once">
+<script type="text/x-red" data-template-name="google.firebase.on">
 
     <div class="form-row">
         <label for="node-input-firebaseConfig"><i class="fa fa-database"></i> Firebase Config</label>
@@ -12,7 +12,7 @@
 
     <div class="form-row">
       <label for="eventType-select"><i class="fa fa-terminal"></i> Event Type</label>
-      .once("
+      .on("
       <select id="eventType-select" style="width:35%">
           <option value="value">value</option>
           <option value="child_added">child_added</option>
@@ -30,10 +30,10 @@
     </div>
 </script>
 
-<script type="text/x-red" data-help-name="google.firebase.once"></script>
+<script type="text/x-red" data-help-name="google.firebase.on"></script>
 
 <script type="text/javascript">
-    RED.nodes.registerType('google.firebase.once',{
+    RED.nodes.registerType('google.firebase.on',{
         category: 'google_firebase',
         defaults: {
             name: {value:''},
@@ -45,27 +45,30 @@
         inputs:1,
         outputs:1,
         icon: 'firebase.png',
-        paletteLabel: "firebase.once()",
+        paletteLabel: "firebase.on()",
         label: function() {
            var config = RED.nodes.node(this.firebaseConfig);
            var childpath = (this.childpath.indexOf("/") == 0) ? this.childpath : "/" + this.childpath;
            childpath = childpath.substr(-1) == "/" ? childpath.slice(0,-1) : childpath
            return this.name ||
-                  (config ? "https://"+config.firebaseurl+".firebaseio.com"+(childpath||"") + ".once(\""+this.eventType+"\")" : childpath + ".once(\""+this.eventType+"\")") ||
-                  "firebase.once(\""+this.eventType+"\")";
+                  (config ? "https://"+config.firebaseurl+".firebaseio.com"+(childpath||"") + ".on(\""+this.eventType+"\")" : childpath + ".on(\""+this.eventType+"\")") ||
+                  "firebase.on(\""+this.eventType+"\")";
         },
         labelStyle: function() {
             return this.name?'node_label_italic':'';
         },
 
         oneditprepare: function() {
+          //Update the eventType node-red property when the value is changed...
           $('#eventType-select').change(function () {
               $("#node-input-eventType").val($(this).find('option:selected').val())
           });
 
+          //Set the select's to the node-red hidden properties
           $("#eventType-select").val($("#node-input-eventType").val())
           $('#eventType-select').trigger('change');
 
+          //Set up autocomplete for Childpath field
           var defaultChildpathValues = [
             "msg.childpath",
           ];
@@ -77,19 +80,20 @@
 
             var illegalCombinationShown = false;
             $('#eventType-select').on('change', function(){
-              if ($(this).val() == "shallow_query"){
+              if ($(this).val() == "shallow_query"){ //disable/hide query paramters window and button
                 $('#node-input-query-illegal-combination-container').fadeOut(300);
                 $('#node-input-query-container-overall').fadeOut(300);
                 $('#query-parameters-name-container').fadeOut(300, function(){
                   $('#eventType-select-info-container').show();
                 });
                 $('#node-dialog-ok').prop('disabled', false);
-              } else {
+              } else { //enable/show query paramters window and button
                 $('#eventType-select-info-container').fadeOut(300, function(){
                   $('#query-parameters-name-container').fadeIn(300)
                   var queries = $('#node-input-query-container').children();
                   if (queries.length > 0) $('#node-input-query-container-overall').fadeIn(300)
 
+                  //Check to see if ok button should be enabled
                   if (checkInputsNotEmpty() && checkSelectsValid()) $('#node-dialog-ok').prop('disabled', false);
                   else {
                     var selectsLegal = checkSelectsNotIllegal();
@@ -124,7 +128,7 @@
               $('#node-input-query-container input').each(function(idx){
                 if ($(this).is(':visible') && $(this).val().length == 0){
                   valid = false;
-                  return;
+                  return; //breaks jquery .each loop
                 }
               })
               return valid;
@@ -133,11 +137,13 @@
             $("#node-input-add-query").click(function() {
               var queries = $('#node-input-query-container').children();
               if (queries.length < operators.length) generatequery();
+              //generatequery($("#node-input-query-container").children().length+1,{t:"",v:"",v2:""});
               $("#node-input-query-container-div").scrollTop($("#node-input-query-container-div").get(0).scrollHeight);
             });
 
             if(this.queries){
               for (i in this.queries){
+              //for (i = 0; i < this.queries.length; i++){ //TODO: For some reason this doesn't work
                 generatequery(this.queries[i]);
               }
             }

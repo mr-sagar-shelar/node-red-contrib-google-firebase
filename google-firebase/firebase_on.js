@@ -16,15 +16,15 @@ module.exports = function (RED) {
       return;
     }
 
-    console.log('Event Value',this.eventType);
-
+    console.log('On Value', this.eventType);
+    console.log('Child Path Value', this.childpath);
     this.status({ fill: "green", shape: "ring", text: "Connected" })
     if (this.firebaseConfig.fbConfig.fbApp) {
-      firebase.database().ref(this.childpath).once(this.eventType.toString()).then(function (snapshot) {
+      firebase.database().ref(this.childpath).on(this.eventType.toString(), function (snapshot) {
         var msg = {};
         msg.payload = snapshot.val();
         node.send(msg);
-        node.status({ fill: "green", shape: "ring", text: "Received Data Once" })
+        node.status({ fill: "green", shape: "ring", text: "Received Data" })
       });
     }
 
@@ -36,5 +36,5 @@ module.exports = function (RED) {
       "child_moved": true
     };
   }
-  RED.nodes.registerType('google.firebase.once', FirebaseOnce);
+  RED.nodes.registerType('google.firebase.on', FirebaseOnce);
 };

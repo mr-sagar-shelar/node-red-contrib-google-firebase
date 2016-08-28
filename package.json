@@ -22,7 +22,8 @@
   "node-red": {
     "nodes": {
       "google_firebase_once": "google-firebase/firebase_once.js",
-      "google_firebase_config": "google-firebase/firebase_config.js"
+      "google_firebase_config": "google-firebase/firebase_config.js",
+      "google_firebase_on": "google-firebase/firebase_on.js"
     }
   },
   "author": "Sagar Shelar",
