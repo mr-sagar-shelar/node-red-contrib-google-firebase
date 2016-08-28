@@ -152,10 +152,10 @@
 
 <script type="text/javascript">
     RED.nodes.registerType('firebase.once',{
-        category: 'firebase',      // the palette category
+        category: 'Google-Firebase',      // the palette category
         defaults: {             // defines the editable properties of the node
             name: {value:''},   //  along with default values.
-            firebaseconfig:  {type:'google firebase config',required:true},
+            firebaseconfig:  {type:'google-firebase-config',required:true},
             childpath: {value: '', required: false},
             repeatifnull: {value: false, required: true},
             eventType: {value: "value", required: true},

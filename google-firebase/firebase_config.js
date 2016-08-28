@@ -326,7 +326,7 @@ module.exports = function (RED) {
     });*/
   }
 
-  RED.nodes.registerType('google firebase config', FirebaseConfig, {
+  RED.nodes.registerType('google-firebase-config', FirebaseConfig, {
     credentials: {
       loginType: { type: 'text' },
       uid: { type: 'text' },

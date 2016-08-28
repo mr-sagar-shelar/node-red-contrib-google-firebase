@@ -1,4 +1,4 @@
-<script type="text/x-red" data-template-name="firebase config" >
+<script type="text/x-red" data-template-name="google-firebase-config">
 
     <div class="form-row">
         <label for="node-config-input-firebaseurl"><i class="fa fa-cloud"></i> Firebase</label>
@@ -71,7 +71,7 @@
 <script type="text/javascript">
     (function () {
 
-        RED.nodes.registerType('firebase config', {
+        RED.nodes.registerType('google-firebase-config', {
             category: 'config',
 
             color: "#ffb37a",
@@ -92,7 +92,7 @@
 
             label: function () {
                 //return typeof this.appid ? 'Firebase ' + this.appid : 'Firebase ' + this.email;
-                var str = 'firebase config Node Error'
+                var str = 'google firebase config Node Error'
 
                 if(this.firebaseurl)
                   str = "https://"+this.firebaseurl+".firebaseio.com/"
