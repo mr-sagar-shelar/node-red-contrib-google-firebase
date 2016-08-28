@@ -170,7 +170,7 @@
         paletteLabel: "firebase.once()",
 
         label: function() {     // sets the default label contents
-           var config = RED.nodes.node(this.firebaseconfig); //server side uses RED.nodes.getNode... go figure...
+           var config = RED.nodes.node(this.google-firebase-config); //server side uses RED.nodes.getNode... go figure...
 
            // make sure the path starts with /
            var childpath = (this.childpath.indexOf("/") == 0) ? this.childpath : "/" + this.childpath;

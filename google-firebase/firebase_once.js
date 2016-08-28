@@ -23,7 +23,7 @@ module.exports = function(RED) {
     function FirebaseOnce(n) {
         RED.nodes.createNode(this,n);
 
-        this.config = RED.nodes.getNode(n.firebaseconfig);
+        this.config = RED.nodes.getNode(n.google-firebase-config);
         this.childpath = n.childpath;
         this.eventType = n.eventType;
         this.queries = n.queries;

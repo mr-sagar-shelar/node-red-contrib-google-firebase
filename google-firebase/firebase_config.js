@@ -240,7 +240,7 @@ module.exports = function (RED) {
     }
   } ();
 
-  function FirebaseConfig(n) {
+  function GoogleFirebaseConfig(n) {
     RED.nodes.createNode(this, n);
 
     this.log('Inside method');
@@ -326,7 +326,7 @@ module.exports = function (RED) {
     });*/
   }
 
-  RED.nodes.registerType('google-firebase-config', FirebaseConfig, {
+  RED.nodes.registerType('google-firebase-config', GoogleFirebaseConfig, {
     credentials: {
       loginType: { type: 'text' },
       uid: { type: 'text' },
