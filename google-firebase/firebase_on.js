@@ -1,8 +1,7 @@
-var Utils = require('utils/utils');
-var _ = require('lodash-node');
-
 module.exports = function (RED) {
   var firebase = require('firebase');
+  var Utils = require('./utils/utils');
+  var _ = require('lodash-node');
 
   function FirebaseOn(n) {
     RED.nodes.createNode(this, n);
@@ -25,7 +24,7 @@ module.exports = function (RED) {
         var msg = {};
         msg.payload = snapshot.val();
         node.send(msg);
-        node.status({ fill: "green", shape: "ring", text: "Received Data" + Utils.getTime });
+        node.status({ fill: "green", shape: "ring", text: "Received Data" + Utils.getTime() });
       });
     }
 

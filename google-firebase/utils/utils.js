@@ -1,10 +1,6 @@
 var _ = require('lodash-node');
 var moment = require('moment');
 
-var Utils = {
-  getTime: function (search) {
-    return "Hello";
-  }
+exports.getTime = function () {
+  return " " + moment().format("HH:mm");
 };
-
-module.export = Utils;
