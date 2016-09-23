@@ -16,15 +16,13 @@ module.exports = function (RED) {
       return;
     }
 
-    console.log('Event Value',this.eventType);
-
     this.status({ fill: "green", shape: "ring", text: "Connected" })
     if (this.firebaseConfig.fbConfig.fbApp) {
       firebase.database().ref(this.childpath).once(this.eventType.toString()).then(function (snapshot) {
         var msg = {};
         msg.payload = snapshot.val();
         node.send(msg);
-        node.status({ fill: "green", shape: "ring", text: "Received Data Once" })
+        node.status({ fill: "green", shape: "ring", text: "Received Data Once" });
       });
     }
 

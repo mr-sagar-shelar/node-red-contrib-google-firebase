@@ -1,7 +1,10 @@
+var Utils = require('utils/utils');
+var _ = require('lodash-node');
+
 module.exports = function (RED) {
   var firebase = require('firebase');
 
-  function FirebaseOnce(n) {
+  function FirebaseOn(n) {
     RED.nodes.createNode(this, n);
     this.firebaseConfig = RED.nodes.getNode(n.firebaseConfig);
     this.childpath = n.childpath;
@@ -16,15 +19,13 @@ module.exports = function (RED) {
       return;
     }
 
-    console.log('On Value', this.eventType);
-    console.log('Child Path Value', this.childpath);
     this.status({ fill: "green", shape: "ring", text: "Connected" })
     if (this.firebaseConfig.fbConfig.fbApp) {
       firebase.database().ref(this.childpath).on(this.eventType.toString(), function (snapshot) {
         var msg = {};
         msg.payload = snapshot.val();
         node.send(msg);
-        node.status({ fill: "green", shape: "ring", text: "Received Data" })
+        node.status({ fill: "green", shape: "ring", text: "Received Data" + Utils.getTime });
       });
     }
 
@@ -36,5 +37,5 @@ module.exports = function (RED) {
       "child_moved": true
     };
   }
-  RED.nodes.registerType('google.firebase.on', FirebaseOnce);
+  RED.nodes.registerType('google.firebase.on', FirebaseOn);
 };

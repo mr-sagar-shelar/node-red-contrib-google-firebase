@@ -34,6 +34,8 @@
   "homepage": "https://github.com/shaggyshelar/node-red-contrib-google-firebase#readme",
   "dependencies": {
     "firebase": "^3.3.0",
-    "follow-redirects": "^0.2.0"
+    "follow-redirects": "^0.2.0",
+    "lodash-node": "^3.10.2",
+    "moment": "^2.15.1"
   }
 }
