@@ -59,14 +59,6 @@
         },
 
         oneditprepare: function() {
-          //Update the eventType node-red property when the value is changed...
-          $('#eventType-select').change(function () {
-              $("#node-input-eventType").val($(this).find('option:selected').val())
-          });
-
-          //Set the select's to the node-red hidden properties
-          $("#eventType-select").val($("#node-input-eventType").val())
-          $('#eventType-select').trigger('change');
 
           //Set up autocomplete for Childpath field
           var defaultChildpathValues = [
@@ -79,30 +71,6 @@
           });
 
             var illegalCombinationShown = false;
-            $('#eventType-select').on('change', function(){
-              if ($(this).val() == "shallow_query"){ //disable/hide query paramters window and button
-                $('#node-input-query-illegal-combination-container').fadeOut(300);
-                $('#node-input-query-container-overall').fadeOut(300);
-                $('#query-parameters-name-container').fadeOut(300, function(){
-                  $('#eventType-select-info-container').show();
-                });
-                $('#node-dialog-ok').prop('disabled', false);
-              } else { //enable/show query paramters window and button
-                $('#eventType-select-info-container').fadeOut(300, function(){
-                  $('#query-parameters-name-container').fadeIn(300)
-                  var queries = $('#node-input-query-container').children();
-                  if (queries.length > 0) $('#node-input-query-container-overall').fadeIn(300)
-
-                  //Check to see if ok button should be enabled
-                  if (checkInputsNotEmpty() && checkSelectsValid()) $('#node-dialog-ok').prop('disabled', false);
-                  else {
-                    var selectsLegal = checkSelectsNotIllegal();
-                    if (!selectsLegal) $('#node-input-query-illegal-combination-container').fadeIn(300);
-                  }
-                });
-              }
-            })
-
 
             function checkSelectsValid(){
               return checkSelectsNotIllegal() && checkSelectsNotEmpty();

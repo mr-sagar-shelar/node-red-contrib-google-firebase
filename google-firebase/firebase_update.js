@@ -18,14 +18,13 @@ module.exports = function (RED) {
     }
 
     this.status({ fill: "green", shape: "ring", text: "Connected" });
-    // this.on('input', function (msg) {
-    //   console.log('!!!!!!!!!Sent Message from Update=',msg.payload);
-    //   node.send(msg);
-    // });
-    // if (this.firebaseConfig.fbConfig.fbApp) {
-    //   firebase.database().ref(this.childpath).update(msg.payload);
-    //   node.status({ fill: "green", shape: "ring", text: "Received Data" + Utils.getTime() });
-    // }
+    this.on('input', function (msg) {
+      if (this.firebaseConfig.fbConfig.fbApp) {
+        firebase.database().ref(this.childpath).update(msg.payload);
+        node.status({ fill: "green", shape: "ring", text: "Updated Data at " + Utils.getTime() });
+        node.send(msg);
+      }
+    });
   }
   RED.nodes.registerType('google.firebase.update', FirebaseUpdate);
 };
