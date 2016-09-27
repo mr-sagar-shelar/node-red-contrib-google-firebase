@@ -1,0 +1,25 @@
+<script type="text/javascript">
+    RED.nodes.registerType('google-gcm-config',{
+        category: 'config',
+        color: "#ffffff",
+        defaults: {
+          apiKey: {value: "", required: true}
+        },       
+        label: function () {
+            var str = 'Please select...'
+            if(this.apiKey)
+              str = this.apiKey
+            return str
+        },
+        labelStyle: function () {
+            return this.name ? 'node_label_italic' : '';
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="google-gcm-config">
+    <div class="form-row">
+        <label for="node-config-input-apiKey"><i class="fa fa-cloud"></i> API Key</label>
+        <input class="input-append-left" type="text" id="node-config-input-apiKey" placeholder="<API_Key>">
+    </div>
+</script>
