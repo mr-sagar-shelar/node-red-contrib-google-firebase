@@ -24,7 +24,8 @@
       "google_firebase_once": "google-firebase/firebase_once.js",
       "google_firebase_config": "google-firebase/firebase_config.js",
       "google_firebase_on": "google-firebase/firebase_on.js",
-      "google_gcm_send": "google-firebase/gcm_send.js"
+      "google_gcm_send": "google-firebase/gcm_send.js",
+      "ivona-tts": "google-firebase/ivona-tts.js"
     }
   },
   "author": "Sagar Shelar",
@@ -36,8 +37,10 @@
   "dependencies": {
     "firebase": "^3.3.0",
     "follow-redirects": "^0.2.0",
+    "ivona-node": "^0.4.0",
     "lodash-node": "^3.10.2",
     "moment": "^2.15.1",
-    "node-gcm": "^0.14.4"
+    "node-gcm": "^0.14.4",
+    "slug": "^0.9.1"
   }
 }

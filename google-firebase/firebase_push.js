@@ -20,6 +20,9 @@ module.exports = function (RED) {
     this.status({ fill: "green", shape: "ring", text: "Connected" });
     this.on('input', function (msg) {
       if (this.firebaseConfig.fbConfig.fbApp) {
+        if(msg.payload.Type && msg.payload.Type == "ModeChange"){
+          msg.payload.Footer = ' at ' + Utils.getNotificationTime();
+        }
         firebase.database().ref(this.childpath).push(msg.payload);
         node.status({ fill: "green", shape: "ring", text: "Pushed Data at " + Utils.getTime() });
         node.send(msg);

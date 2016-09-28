@@ -1,0 +1,146 @@
+<!-- CONFIG -->
+
+<script type="text/x-red" data-template-name="ivona-config">
+
+    <div class="form-row">
+        <label for="node-config-input-name"><i class="fa fa-user"></i> Name</label>
+        <input type="text" id="node-config-input-name">
+    </div>
+
+    <div class="form-row">
+        <label for="node-config-input-accessKey"><i class="fa fa-user"></i> Access key</label>
+        <input type="text" id="node-config-input-accessKey">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-secretKey"><i class="fa fa-user"></i> Secret key</label>
+        <input type="text" id="node-config-input-secretKey">
+    </div>
+</script>
+
+<script type="text/javascript">
+    RED.nodes.registerType('ivona-config',{
+        category: 'config',
+        defaults: {
+            name:      { value:"" },
+            accessKey: { value:"" },
+            secretKey: { value:"" }
+        },
+        label: function() {
+            return this.name || "";
+        }
+    });
+</script>
+
+
+<!-- IVONA -->
+
+<script type="text/x-red" data-template-name="ivona">
+    <div class="form-row">
+        <label for="node-input-config"><i class="fa fa-globe"></i> Configuration</label>
+        <input type="text" id="node-input-config">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-voice"><i class="icon-tag"></i> Voice</label>
+        <select id="node-input-voice" >
+            <option value='0'>Salli (en-US)</option>
+            <option value='1'>Joey (en-US)</option>
+            <option value='2'>Naja (da-DK)</option>
+            <option value='3'>Mads (da-DK)</option>
+            <option value='4'>Marlene (de-DE)</option>
+            <option value='5'>Hans (de-DE)</option>
+            <option value='6'>Nicole (en-AU)</option>
+            <option value='7'>Russell (en-AU)</option>
+            <option value='8'>Amy (en-GB)</option>
+            <option value='9'>Brian (en-GB)</option>
+            <option value='10'>Emma (en-GB)</option>
+            <option value='11'>Gwyneth (en-GB-WLS)</option>
+            <option value='12'>Geraint (en-GB-WLS)</option>
+            <option value='13'>Gwyneth (cy-GB)</option>
+            <option value='14'>Geraint (cy-GB)</option>
+            <option value='15'>Raveena (en-IN)</option>
+            <option value='16'>Chipmunk (en-US)</option>
+            <option value='17'>Eric (en-US)</option>
+            <option value='18'>Ivy (en-US)</option>
+            <option value='19'>Jennifer (en-US)</option>
+            <option value='20'>Justin (en-US)</option>
+            <option value='21'>Kendra (en-US)</option>
+            <option value='22'>Kimberly (en-US)</option>
+            <option value='23'>Conchita (es-ES)</option>
+            <option value='24'>Enrique (es-ES)</option>
+            <option value='25'>Penelope (es-US)</option>
+            <option value='26'>Miguel (es-US)</option>
+            <option value='27'>Chantal (fr-CA)</option>
+            <option value='28'>Celine (fr-FR)</option>
+            <option value='29'>Mathieu (fr-FR)</option>
+            <option value='30'>Dora (is-IS)</option>
+            <option value='31'>Karl (is-IS)</option>
+            <option value='32'>Carla (it-IT)</option>
+            <option value='33'>Giorgio (it-IT)</option>
+            <option value='34'>Liv (nb-NO)</option>
+            <option value='35'>Lotte (nl-NL)</option>
+            <option value='36'>Ruben (nl-NL)</option>
+            <option value='37'>Agnieszka (pl-PL)</option>
+            <option value='38'>Jacek (pl-PL)</option>
+            <option value='39'>Ewa (pl-PL)</option>
+            <option value='40'>Jan (pl-PL)</option>
+            <option value='41'>Maja (pl-PL)</option>
+            <option value='42'>Vitoria (pt-BR)</option>
+            <option value='43'>Ricardo (pt-BR)</option>
+            <option value='44'>Cristiano (pt-PT)</option>
+            <option value='45'>Ines (pt-PT)</option>
+            <option value='46'>Carmen (ro-RO)</option>
+            <option value='47'>Maxim (ru-RU)</option>
+            <option value='48'>Tatyana (ru-RU)</option>
+            <option value='49'>Astrid (sv-SE)</option>
+            <option value='50'>Filiz (tr-TR)</option>
+        </select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-dir"><i class="fa fa-globe"></i> Dir</label>
+        <input type="text" id="node-input-dir">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="ivona">
+
+<p>
+    <a href="https://www.ivona.com">Ivona</a> TTS api node.
+</p>
+<p style="font-size: 12px; border-top: solid 1px lightgrey; text-align: right;">
+    Wraps <a href="https://github.com/tmanderson/ivona-node">tmanderson/ivona-node</a>.
+</p>
+<p>
+    <pre>msg.payload</pre> will be converted to an mp3 file and stored to file system. The file path is indicated at <pre>msg.file</pre>
+</p>
+<p>
+    If the <pre>msg.payload</pre> has already been converted, no rountrip to Ivona server will be made.
+</p>
+<p>
+    The <pre>msg._ivona</pre> objects contains aditional information about the operation.
+    <ul style="font-size: 12px;">
+        <li><i>cached</i> - true if no roundtrip was performed, false otherwise.</li>
+        <li><i>roundtrip</i> - The time in ms for the Ivona server request.</li>
+    </ul>
+</p>
+
+</script>
+
+<script type="text/javascript">
+    RED.nodes.registerType('ivona',{
+        category: 'google_firebase',
+        color:    '#f0ee99',
+        defaults: {
+            name:    { value: "" },
+            voice:   { value: "0", required: true },
+            dir:     { value: "/tmp", required:true },
+            config:  { type:"ivona-config", required:true }
+        },
+        inputs:  1,
+        outputs: 2,
+        icon: "ivona.png",
+        label: function() {
+            return this.name || "ivona";
+        }
+    });
+</script>
