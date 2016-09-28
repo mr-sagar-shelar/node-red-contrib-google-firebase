@@ -6,6 +6,7 @@ module.exports = function (RED) {
     var fs = require('fs');
     var path = require('path');
     var exec = require('child_process').exec;
+    var platform = require('os').platform();
 
     function isDirSync(aPath) {
         try {
@@ -33,13 +34,13 @@ module.exports = function (RED) {
     }
 
     function playFile(filePath) {
-        exec(filePath, function (error, stdout, stderr) {
+        var cmd = platform == "win32" ? filePath : "mpg123 " + filePath;
+        exec(cmd, function (error, stdout, stderr) {
             console.log('stdout: ' + stdout);
             console.log('stderr: ' + stderr);
             if (error !== null) {
                 console.log('exec error: ' + error);
             }
-            console.log('Reply from exec!!');
         });
     }
 
@@ -137,9 +138,6 @@ module.exports = function (RED) {
                 }
 
                 try {
-
-                    console.log('Getting File From Server!!');
-
                     var writeStream = fs.createWriteStream(msg.file);
 
                     node.status({ fill: 'yellow', shape: 'dot', text: 'requesting' });
@@ -148,14 +146,13 @@ module.exports = function (RED) {
                     node.config.ivona.createVoice(msg.payload, {
                         body: { voice: node.voice }
                     }).on('error', function (err) {
-                        console.log('Error while Getting File From Server!!');
                         node.error(RED._(err.message));
                         msg.error = err.message;
                         node.send([null, msg]);
                         node.status({});
                     }).on('end', function () {
-                        console.log('Retrieved file successfully From Server!!');
                         msg._ivona.roundtrip = Date.now() - started;
+                        playFile(msg.file);
                         node.send([msg, null]);
                         node.status({});
                     }).pipe(writeStream);

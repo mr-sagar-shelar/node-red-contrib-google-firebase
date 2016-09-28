@@ -41,6 +41,7 @@
     "lodash-node": "^3.10.2",
     "moment": "^2.15.1",
     "node-gcm": "^0.14.4",
+    "node-json-db": "^0.7.3",
     "slug": "^0.9.1"
   }
 }
