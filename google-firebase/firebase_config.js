@@ -1,3 +1,4 @@
+
 module.exports = function (RED) {
   var firebase = require('firebase');
   var events = require("events");

@@ -6,7 +6,7 @@
           databaseUrl: {value: "", required: true},
           apiKey: {value: "", required: true},
           authDomain: {value: "", required: true}
-        },       
+        },
         label: function () {
             var str = 'Please select...'
             if(this.databaseUrl)
@@ -26,12 +26,10 @@
         <input class="input-append-left" type="text" id="node-config-input-databaseUrl" placeholder="<DATABASE_NAME>" style="width: 28%">
         .firebaseio.com/
     </div>
-
     <div class="form-row">
         <label for="node-config-input-apiKey"><i class="fa fa-cloud"></i> API Key</label>
         <input class="input-append-left" type="text" id="node-config-input-apiKey" placeholder="<API_Key>" style="width: 28%">
     </div>
-
     <div class="form-row">
         <label for="node-config-input-authDomain"><i class="fa fa-cloud"></i> Auth Domain</label>
         <input class="input-append-left" type="text" id="node-config-input-authDomain" placeholder="<PROJECT_ID>" style="width: 28%">
