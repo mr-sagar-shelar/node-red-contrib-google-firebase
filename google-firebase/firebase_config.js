@@ -39,23 +39,52 @@ module.exports = function (RED) {
         }
         } ();
 
+
         function RemoteServerNode(n) {
-        RED.nodes.createNode(this, n);
+                RED.nodes.createNode(this, n);
 
-        this.databaseUrl = "https://" + n.databaseUrl + ".firebaseio.com";
-        this.authDomain = "https://" + n.authDomain + ".firebaseapp.com";
-        this.apiKey = n.apiKey;
+                this.databaseUrl = "https://" + n.databaseUrl + ".firebaseio.com";
+                this.authDomain = "https://" + n.authDomain + ".firebaseapp.com";
+                this.apiKey = n.apiKey;
+                this.email = n.email;
+                this.password = n.password;
 
-        if (this.databaseUrl) {
-        var config = {
-        apiKey: this.apiKey,
-        authDomain: this.authDomain,
-        databaseURL: this.databaseUrl
-        };
-        this.fbConfig = connectionPool.get(config, this.id);
-        } else {
-        this.log('Firebase Not configured!!');
-        }
+                var node = this;
+
+                var openSession = function () {
+                        firebase.auth().signInWithEmailAndPassword(node.email, node.password).catch(function(error) {
+                                var errorCode = error.code;
+                                var errorMessage = error.message;
+
+                                node.error("Errors Open Auth : " + errorCode + " " + errorMessage);
+                        });
+                }
+
+                var closeSession = function() {
+                        firebase.auth().signOut().then(function() {
+                                node.log("Session closed Succesfull...")
+                        }, function(error) {
+                                node.error("Error closing session...")
+                        });
+                }
+
+                if (this.databaseUrl) {
+                        var config = {
+                                apiKey: this.apiKey,
+                                authDomain: this.authDomain,
+                                databaseURL: this.databaseUrl,
+                                email: this.email,
+                                password: this.password
+                        };
+                        this.fbConfig = connectionPool.get(config, this.id);
+                } else {
+                        this.error('Firebase Not configured!!');
+                }
+                openSession(this.email, this.password);
+
+                this.on('close', function() {
+                        closeSession();
+                });
         }
 
         RED.nodes.registerType("google-firebase-config", RemoteServerNode);
