@@ -111,6 +111,7 @@ RED.nodes.registerType('google.firebase.once',{
                 }
                 function checkSelectsNotEmpty(){
                         var valid = true;
+                        
                         $('#node-input-query-container select').each(function(idx ){
                                 if ($(this).val() == null || $(this).val() == ""){
                                         valid = false;
