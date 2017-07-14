@@ -51,15 +51,6 @@ module.exports = function (RED) {
 
                 var node = this;
 
-                var openSession = function () {
-                        firebase.auth().signInWithEmailAndPassword(node.email, node.password).catch(function(error) {
-                                var errorCode = error.code;
-                                var errorMessage = error.message;
-
-                                node.error("Errors Open Auth : " + errorCode + " " + errorMessage);
-                        });
-                }
-
                 var closeSession = function() {
                         firebase.auth().signOut().then(function() {
                                 node.log("Session closed Succesfull...")
@@ -73,18 +64,11 @@ module.exports = function (RED) {
                                 apiKey: this.apiKey,
                                 authDomain: this.authDomain,
                                 databaseURL: this.databaseUrl,
-                                email: this.email,
-                                password: this.password
                         };
                         this.fbConfig = connectionPool.get(config, this.id);
                 } else {
                         this.error('Firebase Not configured!!');
                 }
-                openSession(this.email, this.password);
-
-                this.on('close', function() {
-                        closeSession();
-                });
         }
 
         RED.nodes.registerType("google-firebase-config", RemoteServerNode);

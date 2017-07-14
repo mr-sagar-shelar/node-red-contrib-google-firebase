@@ -1,4 +1,5 @@
 <script type="text/x-red" data-template-name="google.firebase.once">
+
         <div class="form-row">
                 <label for="node-input-firebaseConfig"><i class="fa fa-database"></i> Firebase Config</label>
                 <input type="text" id="node-input-firebaseConfig">
@@ -52,9 +53,9 @@ RED.nodes.registerType('google.firebase.once',{
                 childpath = childpath.substr(-1) == "/" ? childpath.slice(0,-1) : childpath
 
                 return this.name ||
-                (config ? "https://"+config.firebaseurl+".firebaseio.com"+(childpath||"") +
-                ".once(\""+this.eventType+"\")" : childpath + ".once(\""+this.eventType+"\")") ||
-                "firebase.once(\""+this.eventType+"\")";
+                      (config ? "https://"+config.firebaseurl+".firebaseio.com"+(childpath||"") +
+                      ".once(\""+this.eventType+"\")" : childpath + ".once(\""+this.eventType+"\")") ||
+                      "firebase.once(\""+this.eventType+"\")";
         },
         labelStyle: function() {
                 return this.name?'node_label_italic':'';
@@ -111,7 +112,7 @@ RED.nodes.registerType('google.firebase.once',{
                 }
                 function checkSelectsNotEmpty(){
                         var valid = true;
-                        
+
                         $('#node-input-query-container select').each(function(idx ){
                                 if ($(this).val() == null || $(this).val() == ""){
                                         valid = false;
@@ -125,6 +126,7 @@ RED.nodes.registerType('google.firebase.once',{
                 }
                 function checkInputsNotEmpty(){
                         var valid = true;
+
                         $('#node-input-query-container input').each(function(idx){
                                 if ($(this).is(':visible') && $(this).val().length == 0){
                                         valid = false;
@@ -148,7 +150,7 @@ RED.nodes.registerType('google.firebase.once',{
                         var rows = $("#dialog-form>div:not(.node-input-query-container-row)");
                         var height = $("#dialog-form").height();
 
-                        for (var i=0;i<rows.size();i++) {
+                        for (var i = 0; i < rows.size(); i++) {
                                 height -= $(rows[i]).outerHeight(true);
                         }
 

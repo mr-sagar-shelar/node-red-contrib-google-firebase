@@ -12,7 +12,7 @@ module.exports = function (RED) {
                 this.ready = false;
                 var node = this;
 
-                var queryOnce = function() {
+                var QueryOnce = function() {
                         firebase.database().ref(node.childpath).once(node.eventType.toString()).then(function (snapshot) {
                                 var msg = {};
 
@@ -28,17 +28,13 @@ module.exports = function (RED) {
                         return;
                 }
 
-                node.status({ fill: "green", shape: "ring", text: "Connected" })
+                node.status({ fill: "green", shape: "ring", text: "Connected" });
 
                 node.on('input', function(msg) {
                         if (!node.firebaseConfig.fbConfig.fbApp) {
                                 return;
                         }
-                        queryOnce();
-                });
-
-                node.on('close', function(msg) {
-                        node.log("Closed node!!!");
+                        QueryOnce();
                 });
 
                 node.validEventTypes = {

@@ -1,13 +1,11 @@
 <script type="text/javascript">
-        RED.nodes.registerType('google-firebase-config',{
+        RED.nodes.registerType('google-firebase-config', {
                 category: 'config',
                 color: "#ffb37a",
                 defaults: {
                         databaseUrl: {value: "", required: true},
                         apiKey: {value: "", required: true},
-                        authDomain: {value: "", required: true},
-                        email: {value : "", required: true},
-                        password: {value: "", required: true}
+                        authDomain: {value: "", required: true}
                 },
                 label: function () {
                         var str = 'Please select...'
@@ -41,15 +39,4 @@
                 <input class="input-append-left" type="text" id="node-config-input-authDomain" placeholder="<PROJECT_ID>" style="width: 28%">
                 .firebaseapp.com/
         </div>
-
-        <div class="form-row">
-                <label for="node-config-input-email"><i class="fa fa-cloud"></i> Email </label>
-                <input class="input-append-left" type="text" id="node-config-input-email" placeholder="<EMAIL>" style="width: 28%">
-        </div>
-
-        <div class="form-row">
-                <label for="node-config-input-password"><i class="fa fa-cloud"></i> Password </label>
-                <input class="input-append-left" type="password" id="node-config-input-password" placeholder="<PASSWORD>" style="width: 28%">
-        </div>
-
 </script>
