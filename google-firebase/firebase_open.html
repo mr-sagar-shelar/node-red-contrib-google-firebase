@@ -1,0 +1,42 @@
+
+<script type="text/javascript">
+      RED.nodes.registerType('google-firebase-open',{
+            category: 'google_firebase',
+            color: '#ffb37a',
+            defaults: {
+                  firebaseConfig:  {type:'google-firebase-config',required:true},
+                  email: {value:"", required: true},
+                  password:{value:"", required: true}
+            },
+            inputs:1,
+            outputs:1,
+            icon: "firebase.png",
+            paletteLabel: "firebase.open()",
+            label: function() {
+                  return this.name||"Open";
+            }
+      });
+</script>
+
+<script type="text/x-red" data-template-name="google-firebase-open">
+
+      <div class="form-row">
+              <label for="node-input-firebaseConfig"><i class="fa fa-database"></i> Firebase Config </label>
+              <input type="text" id="node-input-firebaseConfig">
+      </div>
+
+      <div class="form-row">
+            <label for="node-input-email"><i class="icon-tag"></i> Email </label>
+            <input type="text" id="node-input-email" placeholder="<EMAIL>">
+      </div>
+
+      <div class="form-row">
+            <label for="node-input-password"><i class="icon-tag"></i> Password </label>
+            <input type="password" id="node-input-password" placeholder="<PASSWORD>">
+      </div>
+
+</script>
+
+<script type="text/x-red" data-help-name="google-firebase-open">
+    <p>A simple node that converts the message payloads into all lower-case characters</p>
+</script>
