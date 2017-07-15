@@ -1,6 +1,6 @@
 {
   "name": "node-red-contrib-google-firebase",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Node-Red module for interacting with google firebase",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -17,6 +17,10 @@
     {
       "name": "Sagar Shelar",
       "email": "shaggy.shelar@gmail.com"
+    },
+    {
+      "name": "Javi",
+      "email": "fj.gutierrezs91@gmail.com"
     }
   ],
   "node-red": {
