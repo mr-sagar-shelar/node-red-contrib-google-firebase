@@ -14,6 +14,13 @@
             paletteLabel: "firebase.open()",
             label: function() {
                   return this.name||"Open";
+            },
+
+            oneditprepare: function() {
+                  // Update the eventType node-red property when the value is changed...
+                  $('#eventType-select').change(function () {
+                        $("#node-input-eventType").val($(this).find('option:selected').val())
+                  });
             }
       });
 </script>
@@ -23,6 +30,18 @@
       <div class="form-row">
               <label for="node-input-firebaseConfig"><i class="fa fa-database"></i> Firebase Config </label>
               <input type="text" id="node-input-firebaseConfig">
+      </div>
+
+      <div class="form-row">
+             <label for="eventType-select"><i class="fa fa-terminal"></i> Event Type</label>
+             .on("
+                    <select id="eventType-select" style="width:35%">
+                        <option value="EmailAuth">EmailAuth</option>
+                        <option value="MobileAuth">MobileAuth</option>
+                        <option value="GoogleAuth">GoogleAuth</option>
+                    </select>
+             ")
+             <input type="hidden" id="node-input-eventType">
       </div>
 
       <div class="form-row">

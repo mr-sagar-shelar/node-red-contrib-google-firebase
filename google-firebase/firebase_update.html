@@ -93,11 +93,12 @@ RED.nodes.registerType('google.firebase.update',{
                 $("#node-input-add-query").click(function() {
                         var queries = $('#node-input-query-container').children();
 
-                        if (queries.length < operators.length) generatequery();
-
+                        if (queries.length < operators.length) {
+                              generatequery();
+                        }
                         //generatequery($("#node-input-query-container").children().length+1,{t:"",v:"",v2:""});
                         $("#node-input-query-container-div")
-                                .scrollTop( $("#node-input-query-container-div")
+                                .scrollTop($("#node-input-query-container-div")
                                 .get(0)
                                 .scrollHeight);
                 });
@@ -122,7 +123,6 @@ RED.nodes.registerType('google.firebase.update',{
                         height -= (parseInt(editorRow.css("marginTop")) + parseInt(editorRow.css("marginBottom")));
                         $("#node-input-query-container-div").css("height", height + "px");
                 };
-
                 $( "#dialog" ).on("dialogresize", switchDialogResize);
 
                 $( "#dialog" ).one("dialogopen", function(ev) {
