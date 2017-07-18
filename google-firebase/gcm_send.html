@@ -1,0 +1,41 @@
+<script type="text/x-red" data-template-name="google.gcm.send">
+
+    <div class="form-row">
+        <label for="node-input-gcmConfig"><i class="fa fa-database"></i> GCM Config</label>
+        <input type="text" id="node-input-gcmConfig">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-tokens"><i class="fa fa-sitemap"></i> Tokens</label>
+        <input class="input-append-left" type="text" id="node-input-tokens" placeholder="Comma separated registration tokens.">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="google.gcm.send"></script>
+
+<script type="text/javascript">
+    RED.nodes.registerType('google.gcm.send',{
+        category: 'google_firebase',
+        defaults: {
+            name: {value:''},
+            gcmConfig:  {type:'google-gcm-config',required:true},
+            tokens: {value: '', required: false}
+        },
+        color: '#ffffff',
+        inputs:1,
+        outputs:1,
+        icon: 'gcm.png',
+        paletteLabel: "gcm.send",
+        label: function() {
+           return this.name || "GCM";
+        },
+        labelStyle: function() {
+            return this.name ?'node_label_italic':'';
+        }
+    });
+</script>
