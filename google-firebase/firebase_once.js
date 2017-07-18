@@ -12,14 +12,20 @@ module.exports = function (RED) {
                 this.ready = false;
                 var node = this;
 
-                var QueryOnce = function() {
-                        firebase.database().ref(node.childpath).once(node.eventType.toString()).then(function (snapshot) {
-                                var msg = {payload: snapshot.val()};
+                var QueryOnce = function () {
+                        var childpath = node.childpath;
+                        if (childpath == "msg.childpath") {
+                                if ("childpath" in msg) {
+                                        childpath = msg.childpath;
+                                }
+                        }
+                        firebase.database().ref(childpath).once(node.eventType.toString()).then(function (snapshot) {
+                                var msg = { payload: snapshot.val() };
                                 var globalContext = node.context().global;
 
                                 globalContext.set("threshold-temp", msg.payload);  // this is now available to other nodes.
                                 node.send(msg);
-                                node.status({ fill: "green", shape: "ring", text: "Received Data(Once) at " + Utils.getTime()});
+                                node.status({ fill: "green", shape: "ring", text: "Received Data(Once) at " + Utils.getTime() });
                         });
                 }
 
@@ -31,7 +37,7 @@ module.exports = function (RED) {
 
                 node.status({ fill: "green", shape: "ring", text: "Connected" });
 
-                node.on('input', function(msg) {
+                node.on('input', function (msg) {
                         if (!node.firebaseConfig.fbConfig.fbApp) {
                                 return;
                         }
