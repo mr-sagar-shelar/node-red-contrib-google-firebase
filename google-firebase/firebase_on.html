@@ -12,13 +12,13 @@
         <div class="form-row">
                 <label for="eventType-select"><i class="fa fa-terminal"></i> Event Type</label>
                 .on("
-                <select id="eventType-select" style="width:35%"> \
-                <option value="value">value</option> \
-                <option value="child_added">child_added</option> \
-                <option value="child_changed">child_changed</option> \
-                <option value="child_removed">child_removed</option> \
-                <option value="child_moved">child_moved</option> \
-                </select> \
+                      <select id="eventType-select" style="width:35%"> \
+                      <option value="value">value</option> \
+                      <option value="child_added">child_added</option> \
+                      <option value="child_changed">child_changed</option> \
+                      <option value="child_removed">child_removed</option> \
+                      <option value="child_moved">child_moved</option> \
+                      </select> \
                 ")
                 <input type="hidden" id="node-input-eventType">
         </div>
@@ -36,7 +36,7 @@ RED.nodes.registerType('google.firebase.on',{
       category: 'google_firebase',
       defaults: {
             name: {value:''},
-            firebaseConfig:  {type:'google-firebase-config',required:true},
+            firebaseConfig:  {type:'google-firebase-config', required:true},
             childpath: {value: '', required: false},
             eventType: {value: "value", required: true},
       },
@@ -65,11 +65,11 @@ RED.nodes.registerType('google.firebase.on',{
                   $("#node-input-eventType").val($(this).find('option:selected').val())
             });
 
-            //Set the select's to the node-red hidden properties
+            // Set the select's to the node-red hidden properties
             $("#eventType-select").val($("#node-input-eventType").val())
             $('#eventType-select').trigger('change');
 
-            //Set up autocomplete for Childpath field
+            // Set up autocomplete for Childpath field
             var defaultChildpathValues = [
                   "msg.childpath",
             ];

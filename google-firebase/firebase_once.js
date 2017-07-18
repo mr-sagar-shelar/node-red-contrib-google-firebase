@@ -14,11 +14,12 @@ module.exports = function (RED) {
 
                 var QueryOnce = function() {
                         firebase.database().ref(node.childpath).once(node.eventType.toString()).then(function (snapshot) {
-                                var msg = {};
+                                var msg = {payload: snapshot.val()};
+                                var globalContext = node.context().global;
 
-                                msg.payload = snapshot.val();
+                                globalContext.set("threshold-temp", msg.payload);  // this is now available to other nodes.
                                 node.send(msg);
-                                node.status({ fill: "green", shape: "ring", text: "Received Data(Once) at " + Utils.getTime() });
+                                node.status({ fill: "green", shape: "ring", text: "Received Data(Once) at " + Utils.getTime()});
                         });
                 }
 
