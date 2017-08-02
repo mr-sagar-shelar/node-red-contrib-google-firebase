@@ -46,9 +46,9 @@ module.exports = function (RED) {
                 this.databaseUrl = "https://" + n.databaseUrl + ".firebaseio.com";
                 this.authDomain = n.authDomain + ".firebaseapp.com";
                 this.apiKey = n.apiKey;
-				this.projectId = n.authDomain;
-				this.storageBucket = n.authDomain + ".appspot.com";
-				this.messagingSenderId = n.senderId;
+                this.projectId = n.authDomain;
+                this.storageBucket = n.authDomain + ".appspot.com";
+                this.messagingSenderId = n.senderId;
                 this.email = n.email;
                 this.password = n.password;
 
