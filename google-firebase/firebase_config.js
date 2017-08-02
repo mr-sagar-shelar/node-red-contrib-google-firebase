@@ -67,9 +67,9 @@ module.exports = function (RED) {
                                 apiKey: this.apiKey,
                                 authDomain: this.authDomain,
                                 databaseURL: this.databaseUrl,
-								projectId: this.projectId,
-								storageBucket: this.storageBucket,
-								messagingSenderId: this.messagingSenderId
+                                projectId: this.projectId,
+                                storageBucket: this.storageBucket,
+                                messagingSenderId: this.messagingSenderId
                         };
                         this.fbConfig = connectionPool.get(config, this.id);
                 } else {
