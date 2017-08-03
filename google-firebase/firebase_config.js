@@ -44,7 +44,7 @@ module.exports = function (RED) {
                 RED.nodes.createNode(this, n);
 
                 this.databaseUrl = "https://" + n.databaseUrl + ".firebaseio.com";
-                this.authDomain = n.authDomain + ".firebaseapp.com";
+                this.authDomain =  "https://" + n.authDomain + ".firebaseapp.com";
                 this.apiKey = n.apiKey;
                 this.projectId = n.authDomain;
                 this.storageBucket = n.authDomain + ".appspot.com";
