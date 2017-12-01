@@ -1,0 +1,40 @@
+<script type="text/javascript">
+    RED.nodes.registerType('auth',{
+        category: 'firebase',
+        color: '#a6bbcf',
+        defaults: {
+           user : {value:'', required:true},
+           password: {value:'', required:true},
+           firebase:  {type:'config-firebase', required:true}
+        },
+        inputs:1,
+        outputs:1,
+        icon: "file.png",
+        label: function() {
+            return this.name||"auth";
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="auth">
+
+      <div class="form-row">
+              <label for="node-input-firebase"><i class="fa fa-database"></i> Firebase Config </label>
+              <input type="text" id="node-input-firebase">
+      </div>
+
+      <div class="form-row">
+          <label for="node-input-user"><i class="icon-tag"></i> User </label>
+          <input type="text" id="node-input-user" placeholder="user">
+      </div>
+
+      <div class="form-row">
+            <label for="node-input-password"><i class="icon-tag"></i> Password </label>
+            <input type="text" id="node-input-password" placeholder="password">
+      </div>
+
+</script>
+
+<script type="text/x-red" data-help-name="auth">
+      <p>A simple node that converts the message payloads into all lower-case characters</p>
+</script>

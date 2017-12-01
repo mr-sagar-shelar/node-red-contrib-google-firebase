@@ -1,0 +1,23 @@
+{
+  "name": "node-google-firebase",
+  "version": "1.0.0",
+  "node-red": {
+    "nodes": {
+      "auth": "auth.js",
+      "once": "once.js",
+      "on": "on.js",
+      "update" : "update.js",
+      "config" : "config.js"
+    }
+  },
+  "description": "node-google-firebase",
+  "dependencies": {
+    "firebase": "4.6.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Javier",
+  "license": "ISC"
+}
