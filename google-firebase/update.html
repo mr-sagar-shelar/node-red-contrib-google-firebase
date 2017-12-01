@@ -1,0 +1,38 @@
+<script type="text/javascript">
+    RED.nodes.registerType('update',{
+        category: 'firebase',
+        color: '#a6bbcf',
+        defaults: {
+           name : {value:'', required:true},
+           reference: {value:'', required:true},
+           firebase:  {type:'config-firebase', required:true}
+        },
+        inputs:1,
+        outputs:1,
+        icon: "file.png",
+        label: function() {
+            return this.name||"update";
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="update">
+      <div class="form-row">
+            <label for="node-input-firebase"><i class="fa fa-database"></i> Firebase Config</label>
+            <input type="text" id="node-input-firebase">
+      </div>
+
+      <div class="form-row">
+          <label for="node-input-name"><i class="icon-tag"></i> Name </label>
+          <input type="text" id="node-input-name" placeholder="Name">
+      </div>
+
+      <div class="form-row">
+            <label for="node-input-reference"><i class="icon-tag"></i> Reference</label>
+            <input type="text" id="node-input-reference" placeholder="Name">
+      </div>
+</script>
+
+<script type="text/x-red" data-help-name="update">
+    <p>A simple node that converts the message payloads into all lower-case characters</p>
+</script>

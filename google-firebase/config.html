@@ -1,0 +1,27 @@
+<script type="text/javascript">
+        RED.nodes.registerType('config-firebase', {
+                category: 'config',
+                color: "#ffb37a",
+                defaults: {
+                        apiKey: {value: "", required: true},
+                        project: {value: "", required: true},
+                        app : {value:""}
+                },
+                labelStyle: function () {
+                        return this.name||"";
+                }
+        });
+</script>
+
+<script type="text/x-red" data-template-name="config-firebase">
+
+        <div class="form-row">
+                <label for="node-config-input-apiKey"><i class="fa fa-cloud"></i> API Key</label>
+                <input class="input-append-left" type="text" id="node-config-input-apiKey" placeholder="API Key" style="width: 28%">
+        </div>
+
+        <div class="form-row">
+                <label for="node-config-input-project"><i class="fa fa-cloud"></i> Project </label>
+                <input class="input-append-left" type="text" id="node-config-input-project" placeholder="Project id" style="width: 28%">
+        </div>
+</script>
